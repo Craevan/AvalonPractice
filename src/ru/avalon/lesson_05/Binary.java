@@ -2,14 +2,14 @@ package ru.avalon.lesson_05;
 
 import java.util.Arrays;
 
-public class Binary {
+public class Binary implements IBool {
 
     private static final int ARRAY_SIZE = 64 ;
 
     int[] array = new int[ARRAY_SIZE / 32]; // каждый int 32 бита
 
+    @Override
     public boolean getByIndex(int index) {
-
         int elementIndex = index / 32; // индекс элемента в масиве; 32 - длина элемента в битах
         int bitIndex = index % 32; // индекс бинарного значения
         int element = array[elementIndex];
@@ -17,6 +17,7 @@ public class Binary {
         return (element & mask) == mask;
     }
 
+    @Override
     public void inversion(int index) {
         int elementIndex = index / 32; // индекс элемента в масиве; 32 - длина элемента в битах
         int bitIndex = index % 32; // индекс бинарного значения
@@ -25,12 +26,22 @@ public class Binary {
         array[elementIndex] = element ^ mask;
     }
 
+    @Override
     public void setTrue(int index) {
         int elementIndex = index / 32; // индекс элемента в масиве; 32 - длина элемента в битах
         int bitIndex = index % 32; // индекс бинарного значения
         int element = array[elementIndex];
         int mask = 1 << bitIndex;
         array[elementIndex] = element | mask;
+    }
+
+    @Override
+    public void setFalse(int index) {
+        int elementIndex = index / 32; // индекс элемента в масиве; 32 - длина элемента в битах
+        int bitIndex = index % 32; // индекс бинарного значения
+        int element = array[elementIndex];
+        int mask = ~(1 << bitIndex);
+        array[elementIndex] = element & mask;
     }
 
     @Override
@@ -44,4 +55,5 @@ public class Binary {
         }
         return Arrays.toString(result);
     }
+
 }
