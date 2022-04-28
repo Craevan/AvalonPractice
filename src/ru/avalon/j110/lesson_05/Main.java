@@ -1,4 +1,4 @@
-package ru.avalon.lesson_05;
+package ru.avalon.j110.lesson_05;
 
 public class Main {
 
